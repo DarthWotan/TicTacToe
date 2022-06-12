@@ -1,0 +1,94 @@
+Funktionen:
+Single-/Multiplayer
+Singleplayer: Ein Spieler + ein Bot (unterschiedliche schwierigkeitsstufen)
+Multiplayer: Zwei Spieler
+
+Spieler wechseln sich immer ab
+
+Klassen:
+
+Player1
+    Name
+    Symbol
+
+    Steinsetzen()
+
+Player2 == Player1
+
+Bot == Player1
+    Easy: Setzt alles random
+    Medium: Wenn 2 in einer Reihe, setzt er immer dahin
+    Hard: Schaut zuerst, ob er selbst gewinnen kann
+
+SwitchPlayer
+    currentPlayer
+
+    switchPlayer();
+
+CheckWin
+    map
+    winningConditions
+
+    checkIfWin();
+
+ShowWinner
+    winner
+
+    showWinner(); (je nach Parameter ggf Konsole oder graphisch)
+    checkWin();
+    win();
+    tie();
+
+Input
+    currentPlayer
+    currentInput
+
+    getInput(); (z.B. aus der Konsole)
+    executeTask();
+
+AskScanner
+    currentPlayer (für Konsolen Output)
+
+    getInput();
+    checkIfInputIsCorrect();
+
+Welcome
+    gameStatus
+
+    singlePlayer();
+    Multiplayer();
+
+Map
+    map
+
+    getRow();
+    getColumn();
+    ChangeMap();
+    getMap();
+
+
+Hirachie:
+
+Main
+|
+Welcome  --> AskScanner
+|
+SwitchPlayer --> CheckWinner --> Map
+|
+Input --> AskScanner
+|
+Player1 Player2 BotEasy-Hard --> Map
+
+Main führt Welcome aus. Welcome fragt, ob Single- oder Multiplayer.
+SwitchPlayer wird ausgeführt.
+SwitchPlayer führt nach jeder "Runde" CheckWinner aus.
+CheckWinner benötigt zugriff auf Map.
+Input wird aufgerufen.
+Falls Spieler dran ist:  Input besorgt sich das momentane Feld (Konsole oder graphisch). Input ruft AskScanner auf.
+                            Player wird aufgerufen.
+                            Stein wird platziert.
+                            Runde wird "beendet".
+Falls nicht: Input wird "übersprungen" und führt das entsprechende Bot Programm aus
+                Bot überprüft Map (Schwierigkeit)
+                Stein wird platziert.
+                Runde wird "beendet".
