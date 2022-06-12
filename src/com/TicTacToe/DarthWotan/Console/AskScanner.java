@@ -105,11 +105,5 @@ public class AskScanner {
 
     }
 
-    public String getPlayerName(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What is your name?");
-        String name = checkIfString(scanner);
-        return name;
-    }
 }
 
