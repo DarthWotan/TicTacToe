@@ -7,38 +7,40 @@ import java.util.HashMap;
 
 public class CheckWinner {
     private Map grid;
-    private int n;
+    private int n, m;
     private HashMap<Map.State, String> map;
     private Map.State[][] board;
     private Player currentPlayer;
     private String symbol;
 
-    public CheckWinner(Map grid, Player currentPlayer) {
+    public CheckWinner(Map grid, Player currentPlayer, int moves) {
         this.grid = grid;
         map = grid.getMap();
         this.currentPlayer = currentPlayer;
         symbol = currentPlayer.getSymbol();
         board = grid.getBoard();
         n = grid.getN();
+        this.m = moves;
     }
 
     public boolean gameIsGoing() {
-        if (tie() || win()) {
+        if (win() ||tie(m) ) {
             return false;
         } else {
             return true;
         }
     }
 
-    private boolean tie() {
-        if (map.containsValue("-")) {
-            return false;
-        } else {
+    private boolean tie(int moves) {
+        if (moves == Math.pow(n, 2)) {
             return true;
+        }
+        else {
+            return false;
         }
     }
 
-    private boolean win() {
+    public boolean win() {
         checkRow();
         if (checkRow() || checkColumn() || checkDiagonal()) {
             return true;

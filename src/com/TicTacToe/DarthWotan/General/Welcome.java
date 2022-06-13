@@ -8,7 +8,7 @@ public class Welcome {
     private String p1Name, p2Name;
     private Player p1, p2;
     private Map grid = new Map();
-    private SwitchPlayer gameMaster = new SwitchPlayer(p1, p2);
+    private SwitchPlayer gameMaster;
     private OutputConsole outputConsole = new OutputConsole(grid);
 
 
@@ -17,14 +17,20 @@ public class Welcome {
     }
     public void start(){
         getName();
+
         p1 = new Player(p1Name, "X", Map.State.X, grid);
         p2 = new Player(p2Name, "O", Map.State.O, grid);
+        gameMaster = new SwitchPlayer(p1, p2);
+
         outputConsole.welcome(p1Name, p2Name);
+        outputConsole.printGrid();
         gameMaster.playGame();
     }
 
     private void getName(){
         p1Name = outputConsole.getPlayerName();
+        outputConsole.welcomePlayer(p1Name);
         p2Name = outputConsole.getPlayerName();
+        outputConsole.welcomePlayer(p2Name);
     }
 }

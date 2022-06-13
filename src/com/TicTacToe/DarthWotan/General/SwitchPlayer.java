@@ -31,12 +31,19 @@ public class SwitchPlayer {
     }
 
     public void playGame(){
+        int moves = 0;
         while(true){
-            gameisrunning = new CheckWinner(currentPlayer.getGrid(), currentPlayer);
+            moves += 1;
+            gameisrunning = new CheckWinner(currentPlayer.getGrid(), currentPlayer, moves);
             currentPlayer.placeStone();
             outputConsole.printGrid();
             if(!gameisrunning.gameIsGoing()){
-                outputConsole.printWinner(currentPlayer.getName());
+                if(gameisrunning.win()) {
+                    outputConsole.printWinner(currentPlayer.getName());
+                }
+                else {
+                    outputConsole.printTie();
+                }
                 break;
             }
             switchPlayer();
