@@ -1,12 +1,13 @@
 package com.TicTacToe.DarthWotan.Player;
 
 import com.TicTacToe.DarthWotan.Console.Input;
+import com.TicTacToe.DarthWotan.Console.OutputConsole;
 import com.TicTacToe.DarthWotan.General.Grid.Map;
 
 public class Player {
     private String symbol = "X", name;
     private Map.State state = Map.State.X;
-
+    OutputConsole outputConsole;
 
 
     private Map grid;
@@ -18,6 +19,7 @@ public class Player {
         this.state = state;
         this.grid = grid;
         this.score = 0;
+        this.outputConsole = new OutputConsole(grid);
 
     }
 
@@ -26,14 +28,13 @@ public class Player {
         return input.getInputConsole();
     }
 
-    public void placeStone() {
-        int place;
+    public void placeStone(int place) {
+
         while(true) {
-            place = getPlace();
             if(grid.checkIfFree(place)){
                 break;
             }
-            System.out.println("Sorry this field is already taken. Try again!");
+            outputConsole.printPlaceError();
         }
         grid.changeMap(place, state);
     }

@@ -32,14 +32,16 @@ public class SwitchPlayer {
 
     public void playGame(){
         int moves = 0;
+
         while(true){
             moves += 1;
             gameisrunning = new CheckWinner(currentPlayer.getGrid(), currentPlayer, moves);
-            currentPlayer.placeStone();
+            currentPlayer.placeStone(currentPlayer.getPlace());
             outputConsole.printGrid();
             if(!gameisrunning.gameIsGoing()){
                 if(gameisrunning.win()) {
                     outputConsole.printWinner(currentPlayer.getName());
+                    currentPlayer.setScore(currentPlayer.getScore() + 1);
                 }
                 else {
                     outputConsole.printTie();

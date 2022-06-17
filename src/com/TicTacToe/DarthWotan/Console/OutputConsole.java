@@ -27,6 +27,10 @@ public class OutputConsole {
         }
     }
 
+    public void printPlaceError(){
+        System.out.println("Sorry this field is already taken. Try again!");
+    }
+
     public void printTie(){System.out.println("Tie! No winner!");}
     public void welcome(String name1, String name2){
         System.out.println("Welcome " + name1 + " and " + name2 + "!");
