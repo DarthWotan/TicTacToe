@@ -68,6 +68,23 @@ public class AskScanner {
         }
     }
 
+    public int askForDifficulty(){
+        Scanner scanner = new Scanner(System.in);
+        while (true){
+            System.out.println("Choose a difficulty \nEasy(1)    Medium(2)    Hard(3)");
+            if(checkIfInt(scanner)){
+                int i = scanner.nextInt();
+                switch (i){
+                    case 1: return 1;
+                    case 2: return 2;
+                    case 3: return 3;
+                    default: break;
+                }
+            }
+            System.out.println("Invalid answer, try again!");
+        }
+    }
+
     private boolean checkIfCorrectInputInt(int input){
 
         if(input <=9 && input >= 1){

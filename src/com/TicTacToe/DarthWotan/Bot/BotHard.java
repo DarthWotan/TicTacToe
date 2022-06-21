@@ -1,4 +1,10 @@
 package com.TicTacToe.DarthWotan.Bot;
 
-public class BotHard {
+import com.TicTacToe.DarthWotan.General.Grid.Map;
+import com.TicTacToe.DarthWotan.Player.Player;
+
+public class BotHard extends Player {
+    public BotHard(String name, String symbol, Map.State state, Map grid) {
+        super(name, symbol, state, grid);
+    }
 }
