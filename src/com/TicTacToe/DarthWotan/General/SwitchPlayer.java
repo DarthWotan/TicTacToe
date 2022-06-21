@@ -36,7 +36,7 @@ public class SwitchPlayer {
         while(true){
             moves += 1;
             gameisrunning = new CheckWinner(currentPlayer.getGrid(), currentPlayer, moves);
-            currentPlayer.placeStone(currentPlayer.getPlace());
+            currentPlayer.placeStone();
             outputConsole.printGrid();
             if(!gameisrunning.gameIsGoing()){
                 if(gameisrunning.win()) {

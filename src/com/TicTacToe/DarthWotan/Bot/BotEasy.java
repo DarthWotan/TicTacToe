@@ -22,4 +22,16 @@ public class BotEasy extends Player {
             }
         }
     }
+
+    public void placeStone() {
+        int place;
+        outputConsole.printBotMessage(name);
+        while(true) {
+            place = getPlace();
+            if(grid.checkIfFree(place)){
+                break;
+            }
+        }
+        grid.changeMap(place, state);
+    }
 }

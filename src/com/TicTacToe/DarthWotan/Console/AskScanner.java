@@ -11,6 +11,9 @@ public class AskScanner {
         this.currentName = currentName;
     }
 
+    public AskScanner() {
+    }
+
     public int askForPlace(){
         Scanner scanner = new Scanner(System.in);
         int i;
@@ -40,6 +43,29 @@ public class AskScanner {
 
         }
         return out;
+    }
+
+    public int askIfSinglePlayer(){
+        Scanner scanner = new Scanner(System.in);
+        while(true){
+            System.out.println("Singleplayer(1)        Multiplayer(2)");
+            if(checkIfInt(scanner)){
+                int i = scanner.nextInt();
+                switch (i){
+                    case 1 -> {
+                        return 1;
+                    }
+                    case 2 -> {
+                        return 2;
+                    }
+                    default -> {
+                        break;
+                    }
+                }
+            }
+            scanner.next();
+            System.out.println("Invalid answer, try again!");
+        }
     }
 
     private boolean checkIfCorrectInputInt(int input){
@@ -103,6 +129,12 @@ public class AskScanner {
             }
         }
 
+    }
+    private boolean checkIfInt(Scanner scanner){
+        if(scanner.hasNextInt()){
+            return true;
+        }
+        return false;
     }
 
 }

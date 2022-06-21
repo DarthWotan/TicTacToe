@@ -5,13 +5,13 @@ import com.TicTacToe.DarthWotan.Console.OutputConsole;
 import com.TicTacToe.DarthWotan.General.Grid.Map;
 
 public class Player {
-    private String symbol = "X", name;
-    private Map.State state = Map.State.X;
-    OutputConsole outputConsole;
+    protected String symbol = "X", name;
+    protected Map.State state = Map.State.X;
+    protected OutputConsole outputConsole;
 
 
-    private Map grid;
-    private int score;
+    protected Map grid;
+    protected int score;
 
     public Player(String name, String symbol , Map.State state, Map grid) {
         this.symbol = symbol;
@@ -28,9 +28,10 @@ public class Player {
         return input.getInputConsole();
     }
 
-    public void placeStone(int place) {
-
+    public void placeStone() {
+        int place;
         while(true) {
+            place = getPlace();
             if(grid.checkIfFree(place)){
                 break;
             }

@@ -25,6 +25,7 @@ public class OutputConsole {
             System.out.println();
             s += 3; e += 3;
         }
+        System.out.println(" ");
     }
 
     public void printPlaceError(){
@@ -35,7 +36,7 @@ public class OutputConsole {
     public void welcome(String name1, String name2){
         System.out.println("Welcome " + name1 + " and " + name2 + "!");
         System.out.println("The rules are simple: ");
-        System.out.println("You have a 3x3 grid. You can place your token wherever as soon as it is empty ('-') ");
+        System.out.println("You have a 3x3 grid. You can place your token wherever you want as soon as it is empty ('-') ");
         System.out.println("You can place your token whether with 1-9 or with a1-a3, b1-b3 and c1-c3. \n ");
     }
     public String getPlayerName(){
@@ -46,6 +47,10 @@ public class OutputConsole {
     }
     public void welcomePlayer(String name){
         System.out.println("Welcome "+name+"!");
+    }
+
+    public void printBotMessage(String name){
+        System.out.println(name + " is thinking...");
     }
 
 }
