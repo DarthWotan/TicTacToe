@@ -145,21 +145,18 @@ public class BotMedium extends Player {
     private int checkAntiDiagonal() {
         int antiDiagonals = 0;
         int antiDiagonals2 = 0;
-        for (int row = 0; row < n; row++) { // maybe not necessary
-            for (int column = 0; column < n; column++) {
 
-                if (row + column == n - 1) { // anti diagonal
-                    for (int i = 0; i < n; i++) {
-                        if (board[i][(n - 1) - i]  != state) {
-                            antiDiagonals += 1;
+        for (int i = 0; i < n; i++) {
+            if (board[i][(n - 1) - i]  != state) {
+                antiDiagonals += 1;
 
-                        }
-                        if(board[i][(n - 1) - i] != Map.State.X){
-                            antiDiagonals2 += 1;
-                        }
-                    }
-                }
             }
+            if(board[i][(n - 1) - i] != Map.State.X){
+                antiDiagonals2 += 1;
+            }
+
+
+
         }
         if(antiDiagonals == 1 || antiDiagonals2 == 1){
             return getPlaceAntiDiagonal();
@@ -189,7 +186,7 @@ public class BotMedium extends Player {
                 if (row + column == n - 1) { // anti diagonal
                     for (int i = 0; i < n; i++) {
                         if (board[i][(n - 1) - i] == Map.State.Blank) {
-                            return grid.getPlace(i, i);
+                            return grid.getPlace(i, (n - 1) -i );
                         }
                     }
                 }
