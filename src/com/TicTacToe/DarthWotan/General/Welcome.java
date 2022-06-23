@@ -58,7 +58,7 @@ public class Welcome {
             outputConsole.welcomePlayer(p2Name);
         }
         else {
-            p2Name = "EasyBot";
+            p2Name = "Bot";
         }
     }
 }

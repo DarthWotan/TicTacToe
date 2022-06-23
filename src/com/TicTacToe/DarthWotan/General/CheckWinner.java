@@ -49,7 +49,7 @@ public class CheckWinner {
         }
     }
 
-    private boolean checkRow() { // does not work properly rn
+    private boolean checkRow() {
         for (int y = 0; y < n; y++) {
             for (int x = 0; x < n; x++) {
                 if (board[y][x] != currentPlayer.getState()) {
@@ -80,7 +80,7 @@ public class CheckWinner {
     private boolean checkDiagonal() {
         for (int x = 0; x < n; x++) { // maybe not necessary
             for (int y = 0; y < n; y++) {
-                if (x == y) {
+                if (x == y) { // diagonal
                     for (int i = 0; i < n; i++) {
                         if (board[i][i] != currentPlayer.getState()) {
                             break;
@@ -90,7 +90,7 @@ public class CheckWinner {
                         }
                     }
                 }
-                if (x + y == n - 1) {
+                if (x + y == n - 1) { // anti diagonal
                     for (int i = 0; i < n; i++) {
                         if (board[i][(n - 1) - i] != currentPlayer.getState()) {
                             break;

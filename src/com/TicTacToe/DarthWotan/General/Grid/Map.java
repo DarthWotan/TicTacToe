@@ -10,15 +10,16 @@ public class Map {
 
     public Map() {
         board = new State[n][n];
-        map.put(board[0][0], "-");
-        map.put(board[0][1], "-");
-        map.put(board[0][2], "-");
-        map.put(board[1][0], "-");
-        map.put(board[1][1], "-");
-        map.put(board[1][2], "-");
-        map.put(board[2][0], "-");
-        map.put(board[2][1], "-");
-        map.put(board[2][2], "-");
+        setBoard();
+    }
+
+    private void setBoard(){
+        for(int x =0; x<n; x++){
+            for(int y = 0; y<n; y++){
+                board[y][x] = State.Blank;
+                map.put(board[y][x], "-");
+            }
+        }
     }
     public void changeMap(int p, State v){
         int row = getRow(p), column = getColumn(p);
@@ -64,6 +65,25 @@ public class Map {
             }
         }
         return 3;
+    }
+
+    public int getPlace(int row, int column){
+        if(row == 0) {
+            if(column == 0) return 1;
+            if(column == 1) return 2;
+            if(column == 2) return 3;
+        }
+        if(row == 1) {
+            if(column == 0) return 4;
+            if(column == 1) return 5;
+            if(column == 2) return 6;
+        }
+        if(row == 2) {
+            if(column == 0) return 7;
+            if(column == 1) return 8;
+            if(column == 2) return 9;
+        }
+        return 0;
     }
 
     public boolean checkIfFree(int place){
