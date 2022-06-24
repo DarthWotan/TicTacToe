@@ -68,7 +68,7 @@ public class BotHard extends Player {
             rs = 0;
             rs2 = 0;
         }
-        if(self!=n+1){
+        if(self!=n+1 && getPlaceRow(self) != 0){
             return getPlaceRow(self);
 
         }
@@ -88,7 +88,9 @@ public class BotHard extends Player {
         return 0;
     }
 
-    private int checkColumn(){
+    private int checkColumn(){ // todo: wird noch falsch getriggert
+        // (wenn a1 X und b1 oder c1 O sind --> setzt in Reihe eins, obwohl anderswo 2 X sind)
+
         int cols = 0;
         int cols2 = 0;
         int self = n+1, opponent = n+1;
@@ -97,23 +99,21 @@ public class BotHard extends Player {
                 if (board[row][column] != state) {
                     cols += 1;
                 }
-                if( board[row][column] != Map.State.X || board[row][column] != state){
+                if( board[row][column] != Map.State.X){
                     cols2 += 1;
                 }
 
             }
             if(cols == 1){
-                System.out.println("yap");
                 self = column;
             }
             if( cols2 == 1){
-                System.out.println("nope");
                 opponent = column;
             }
             cols = 0;
             cols2 = 0;
         }
-        if(self!=n+1){
+        if(self!=n+1 && getPlaceColumn(self) != 0){
             return getPlaceColumn(self);
 
         }
@@ -129,6 +129,7 @@ public class BotHard extends Player {
                 return grid.getPlace(row, column);
             }
         }
+        System.out.println("does not work");
         return 0;
     }
 
