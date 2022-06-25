@@ -1,6 +1,7 @@
 package com.TicTacToe.DarthWotan.Console;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class AskScanner {
         while (true) {
             if (scanner.hasNextInt()) {
                 i = scanner.nextInt();
-                if(checkIfCorrectInputInt(i)){
+                if(checkIfCorrectInputInt(i, 1, 9)){
                     out = i; break;
                 }
                 else{
@@ -32,7 +33,7 @@ public class AskScanner {
             }
             else if (scanner.hasNext()) {
                 s = scanner.next();
-                if (checkIfCorrectInputString(s)) {
+                if (checkIfCorrectInputString(s, Arrays.asList(new String[]{"a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"}))) {
                     out = decodeStringToInt(s);
                     break;
                 }
@@ -43,6 +44,21 @@ public class AskScanner {
 
         }
         return out;
+    }
+
+    public boolean askIfPlayAgain(){
+        String s;
+        Scanner scanner = new Scanner(System.in);
+        while (true){
+            System.out.println("\nDo you want to play again? (y/n)");
+            s = scanner.next();
+            if (checkIfCorrectInputString(s, Arrays.asList(new String[]{"y", "n"}))) {
+                if(s.equals("y")){
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 
     public int askIfSinglePlayer(){
@@ -85,9 +101,9 @@ public class AskScanner {
         }
     }
 
-    private boolean checkIfCorrectInputInt(int input){
+    private boolean checkIfCorrectInputInt(int input, int min, int max){
 
-        if(input <=9 && input >= 1){
+        if(input <=max && input >= min){
             return true;
         }
         else {
@@ -129,8 +145,8 @@ public class AskScanner {
             }
         }
     }
-    private boolean checkIfCorrectInputString(String input) {
-            if(input.equals("a1") || input.equals("a2") || input.equals("a3") || input.equals("b1") || input.equals("b2") || input.equals("b3") || input.equals("c1") || input.equals("c2") || input.equals("c3") ) {
+    private boolean checkIfCorrectInputString(String input, List<String> elements) {
+            if(elements.contains(input)) {
                 return true;
             }
             else{
@@ -139,12 +155,11 @@ public class AskScanner {
 
     }
 
-    private String checkIfString(Scanner scanner){
-        while(true){
-            if(scanner.hasNext()){
-                return scanner.next();
-            }
+    private boolean checkIfString(Scanner scanner){
+        if(scanner.hasNext()){
+            return true;
         }
+        return false;
 
     }
     private boolean checkIfInt(Scanner scanner){

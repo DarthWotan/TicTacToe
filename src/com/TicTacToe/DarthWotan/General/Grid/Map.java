@@ -21,6 +21,9 @@ public class Map {
             }
         }
     }
+    public void resetBoard(){
+        setBoard();
+    }
     public void changeMap(int p, State v){
         int row = getRow(p), column = getColumn(p);
         board[row][column] = v;

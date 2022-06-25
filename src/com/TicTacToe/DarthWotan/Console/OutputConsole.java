@@ -1,6 +1,7 @@
 package com.TicTacToe.DarthWotan.Console;
 
 import com.TicTacToe.DarthWotan.General.Grid.Map;
+import com.TicTacToe.DarthWotan.Player.Player;
 
 import java.util.Scanner;
 
@@ -44,6 +45,12 @@ public class OutputConsole {
         System.out.println("What is your name?");
         String name = scanner.next();
         return name;
+    }
+
+    public void printScore(Player p1, Player p2){
+        System.out.println(p1.getName() +"'s current score: " + p1.getScore());
+        System.out.println(p2.getName() +"'s current score: " + p2.getScore());
+
     }
     public void welcomePlayer(String name){
         System.out.println("Welcome "+name+"!");

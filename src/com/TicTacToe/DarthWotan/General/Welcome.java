@@ -23,8 +23,8 @@ public class Welcome {
 
     public void start(){
         int mode = askScanner.askIfSinglePlayer();
-        int difficulty;
-        getName(mode, "Easy");
+        int difficulty, oldScore;
+        getName(mode);
 
         p1 = new Player(p1Name, "X", Map.State.X, grid);
         if(mode == 2) {
@@ -34,11 +34,33 @@ public class Welcome {
             difficulty = askScanner.askForDifficulty();
             p2 = getP2Bot(difficulty);
         }
+        while(true){
         gameMaster = new SwitchPlayer(p1, p2);
 
         outputConsole.welcome(p1Name, p2Name);
-        outputConsole.printGrid();
-        gameMaster.playGame();
+
+            outputConsole.printGrid();
+            gameMaster.playGame();
+            outputConsole.printScore(p1, p2);
+            if(!askScanner.askIfPlayAgain()){
+                break;
+            }
+            grid.resetBoard();
+            mode = askScanner.askIfSinglePlayer();
+            if (mode == 2) {
+                getName(2);
+                p1.setName(p1Name);
+                oldScore = p2.getScore();
+                p2 = new Player(p2Name, "O", Map.State.O, grid);
+                p2.setScore(oldScore);
+            }
+            else {
+                oldScore = p2.getScore();
+                difficulty = askScanner.askForDifficulty();
+                p2 = getP2Bot(difficulty);
+                p2.setScore(oldScore);
+            }
+        }
     }
 
     private Player getP2Bot(int difficulty){
@@ -49,10 +71,12 @@ public class Welcome {
         }
         return new Player(p2Name, "O", Map.State.O, grid);
     }
-    private void getName(int playerNumber, String difficulty){
+    private void getName(int playerNumber){
+
 
         p1Name = outputConsole.getPlayerName();
         outputConsole.welcomePlayer(p1Name);
+
         if(playerNumber == 2) {
             p2Name = outputConsole.getPlayerName();
             outputConsole.welcomePlayer(p2Name);

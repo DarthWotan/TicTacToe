@@ -88,8 +88,7 @@ public class BotHard extends Player {
         return 0;
     }
 
-    private int checkColumn(){ // todo: wird noch falsch getriggert
-        // (wenn a1 X und b1 oder c1 O sind --> setzt in Reihe eins, obwohl anderswo 2 X sind)
+    private int checkColumn(){
 
         int cols = 0;
         int cols2 = 0;
@@ -129,7 +128,6 @@ public class BotHard extends Player {
                 return grid.getPlace(row, column);
             }
         }
-        System.out.println("does not work");
         return 0;
     }
 
